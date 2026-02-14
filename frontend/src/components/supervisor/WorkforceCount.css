@@ -1,0 +1,184 @@
+/* Mobile-optimized styles for WorkforceCount component */
+
+.mobile-optimized-card {
+  transition: all 0.2s ease-in-out;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-optimized-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.mobile-optimized-card .ant-card-head {
+  padding: 12px 16px;
+  min-height: 48px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.mobile-optimized-card .ant-card-body {
+  padding: 16px;
+}
+
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icon sizing for mobile */
+.mobile-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Workforce status cards */
+.workforce-status-card {
+  background: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.workforce-status-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.workforce-status-card:active {
+  transform: translateY(0);
+}
+
+/* Status colors */
+.status-present {
+  background: linear-gradient(135deg, #f6ffed 0%, #d9f7be 100%);
+  border-color: #b7eb8f;
+}
+
+.status-absent {
+  background: linear-gradient(135deg, #fff2f0 0%, #ffccc7 100%);
+  border-color: #ffa39e;
+}
+
+.status-late {
+  background: linear-gradient(135deg, #fffbe6 0%, #fff1b8 100%);
+  border-color: #ffe58f;
+}
+
+.status-leave {
+  background: linear-gradient(135deg, #f0f5ff 0%, #d6e4ff 100%);
+  border-color: #adc6ff;
+}
+
+/* Responsive grid for workforce cards */
+.workforce-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+/* Overtime alert styling */
+.overtime-alert {
+  background: linear-gradient(135deg, #fff7e6 0%, #ffd591 100%);
+  border: 1px solid #ffb84d;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 16px;
+  animation: pulse-orange 2s infinite;
+}
+
+@keyframes pulse-orange {
+  0% { box-shadow: 0 0 0 0 rgba(255, 184, 77, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(255, 184, 77, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 184, 77, 0); }
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 640px) {
+  .mobile-optimized-card .ant-card-head {
+    padding: 8px 12px;
+    min-height: 44px;
+  }
+  
+  .mobile-optimized-card .ant-card-body {
+    padding: 12px;
+  }
+  
+  .ant-btn {
+    min-height: 44px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .mobile-icon {
+    font-size: 18px;
+  }
+  
+  .workforce-grid {
+    gap: 8px;
+  }
+  
+  .workforce-status-card {
+    min-height: 70px;
+    padding: 8px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .mobile-optimized-card .ant-card-head {
+    padding: 6px 10px;
+  }
+  
+  .mobile-optimized-card .ant-card-body {
+    padding: 10px;
+  }
+  
+  .workforce-grid {
+    gap: 6px;
+  }
+}
+
+/* Tablet and desktop */
+@media (min-width: 768px) {
+  .workforce-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+}
+
+/* Focus styles for accessibility */
+.ant-btn:focus,
+.workforce-status-card:focus {
+  outline: 2px solid #1890ff;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .workforce-status-card,
+  .mobile-optimized-card {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .workforce-status-card,
+  .mobile-optimized-card,
+  .overtime-alert {
+    transition: none;
+    animation: none;
+  }
+}

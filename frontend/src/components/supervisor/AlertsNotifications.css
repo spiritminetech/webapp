@@ -1,0 +1,275 @@
+/* Mobile-optimized styles for AlertsNotifications component */
+
+.alert-card {
+  transition: all 0.2s ease-in-out;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Enhanced hover effects for desktop */
+@media (hover: hover) {
+  .alert-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Active state for touch devices */
+.alert-card:active {
+  transform: scale(0.98);
+}
+
+/* Critical alert pulse animation */
+@keyframes criticalPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse {
+  animation: criticalPulse 2s infinite;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 640px) {
+  .ant-card-body {
+    padding: 16px;
+  }
+  
+  .ant-card-head {
+    padding: 12px 16px;
+  }
+  
+  .ant-card-head-title {
+    font-size: 16px;
+  }
+  
+  /* Larger touch targets */
+  .ant-btn {
+    min-height: 44px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+  }
+  
+  .ant-btn-lg {
+    min-height: 48px;
+    font-size: 16px;
+  }
+  
+  /* Better modal sizing */
+  .ant-modal {
+    margin: 10px;
+    max-width: calc(100vw - 20px);
+  }
+  
+  .ant-modal-content {
+    border-radius: 16px;
+  }
+  
+  .ant-modal-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .ant-modal-body {
+    padding: 16px 20px;
+  }
+  
+  .ant-modal-footer {
+    padding: 16px 20px;
+    border-top: 1px solid #f0f0f0;
+  }
+  
+  /* Better tag styling */
+  .ant-tag {
+    border-radius: 6px;
+    font-weight: 500;
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+  
+  /* Alert summary cards */
+  .alert-summary-card {
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Priority indicators */
+  .priority-critical {
+    border-left: 4px solid #ff4d4f;
+  }
+  
+  .priority-warning {
+    border-left: 4px solid #faad14;
+  }
+  
+  .priority-info {
+    border-left: 4px solid #1890ff;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .ant-card-body {
+    padding: 12px;
+  }
+  
+  .ant-card-head {
+    padding: 10px 12px;
+  }
+  
+  /* Stack alert metadata vertically */
+  .alert-metadata {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  /* Compact action buttons */
+  .alert-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .alert-actions .ant-btn {
+    width: 100%;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 500px) and (orientation: landscape) {
+  .mobile-modal .ant-modal-body {
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .alert-card {
+    border-width: 1px;
+  }
+}
+
+/* Dark mode support (if implemented) */
+@media (prefers-color-scheme: dark) {
+  .alert-card {
+    background-color: #1f1f1f;
+    border-color: #333;
+  }
+  
+  .alert-summary-card {
+    background-color: #2a2a2a;
+    border-color: #404040;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .alert-card,
+  .ant-btn,
+  .mobile-modal .ant-modal-content {
+    transition: none;
+  }
+  
+  .alert-card:active {
+    transform: none;
+  }
+  
+  .animate-pulse {
+    animation: none;
+  }
+}
+
+/* Focus styles for accessibility */
+.ant-btn:focus,
+.alert-card:focus {
+  outline: 2px solid #1890ff;
+  outline-offset: 2px;
+}
+
+/* Loading state improvements */
+.ant-spin-container {
+  min-height: 200px;
+}
+
+/* Empty state styling */
+.ant-empty {
+  padding: 32px 16px;
+}
+
+.ant-empty-description {
+  color: #8c8c8c;
+  font-size: 14px;
+}
+
+/* Alert type specific styling */
+.alert-geofence {
+  border-left: 4px solid #ff4d4f;
+}
+
+.alert-absence {
+  border-left: 4px solid #faad14;
+}
+
+.alert-attendance {
+  border-left: 4px solid #fadb14;
+}
+
+.alert-safety {
+  border-left: 4px solid #ff4d4f;
+}
+
+/* Status indicators */
+.status-unread {
+  position: relative;
+}
+
+.status-unread::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  background-color: #ff4d4f;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Smooth scrolling for modal content */
+.ant-modal-body {
+  scroll-behavior: smooth;
+}
+
+/* Better button spacing */
+.ant-modal-footer .ant-btn + .ant-btn {
+  margin-left: 12px;
+}
+
+/* Touch-friendly spacing */
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Alert detail grid improvements */
+.alert-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .alert-detail-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+}

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Service Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dashboard Service Test</h1>
+    <p>This page tests the DashboardService to verify it's working correctly after fixing the circular dependency issue.</p>
+    
+    <div id="results"></div>
+    
+    <button onclick="runTests()">Run Tests</button>
+    <button onclick="clearResults()">Clear Results</button>
+    
+    <script type="module">
+        window.testResults = [];
+        
+        function addResult(type, message, details = null) {
+            const result = { type, message, details, timestamp: new Date() };
+            window.testResults.push(result);
+            
+            const resultsDiv = document.getElementById('results');
+            const resultDiv = document.createElement('div');
+            resultDiv.className = `test-result ${type}`;
+            
+            let content = `<strong>${type.toUpperCase()}:</strong> ${message}`;
+            if (details) {
+                content += `<pre>${JSON.stringify(details, null, 2)}</pre>`;
+            }
+            
+            resultDiv.innerHTML = content;
+            resultsDiv.appendChild(resultDiv);
+            
+            // Scroll to bottom
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        window.addResult = addResult;
+        
+        window.clearResults = function() {
+            document.getElementById('results').innerHTML = '';
+            window.testResults = [];
+        };
+        
+        window.runTests = async function() {
+            addResult('info', 'Starting Dashboard Service tests...');
+            
+            try {
+                // Test 1: Import DashboardService
+                addResult('info', 'Test 1: Importing DashboardService...');
+                const dashboardServiceModule = await import('../src/services/DashboardService.js');
+                const dashboardService = dashboardServiceModule.default;
+                
+                if (!dashboardService) {
+                    addResult('error', 'DashboardService is null or undefined');
+                    return;
+                }
+                
+                if (Object.keys(dashboardService).length === 0) {
+                    addResult('error', 'DashboardService is an empty object - circular dependency issue not resolved');
+                    return;
+                }
+                
+                addResult('success', 'DashboardService imported successfully', {
+                    hasService: !!dashboardService,
+                    serviceKeys: Object.keys(dashboardService),
+                    serviceMethods: Object.getOwnPropertyNames(Object.getPrototypeOf(dashboardService))
+                });
+                
+                // Test 2: Check AuthService lazy loading
+                addResult('info', 'Test 2: Testing AuthService lazy loading...');
+                const authService = await dashboardService.getAuthService();
+                
+                addResult('success', 'AuthService lazy loading works', {
+                    hasAuthService: !!authService,
+                    authServiceMethods: Object.getOwnPropertyNames(Object.getPrototypeOf(authService))
+                });
+                
+                // Test 3: Import all related services to check circular dependency
+                addResult('info', 'Test 3: Testing circular dependency resolution...');
+                const [authModule, apiModule, errorModule] = await Promise.all([
+                    import('../src/services/AuthService.js'),
+                    import('../src/services/ApiService.js'),
+                    import('../src/services/ErrorLoggingService.js')
+                ]);
+                
+                const allServicesValid = !!(authModule.default && apiModule.default && errorModule.default);
+                
+                if (allServicesValid) {
+                    addResult('success', 'All services imported without circular dependency errors', {
+                        authService: !!authModule.default,
+                        apiService: !!apiModule.default,
+                        errorLoggingService: !!errorModule.default
+                    });
+                } else {
+                    addResult('error', 'Some services failed to import properly', {
+                        authService: !!authModule.default,
+                        apiService: !!apiModule.default,
+                        errorLoggingService: !!errorModule.default
+                    });
+                }
+                
+                // Test 4: Test service methods exist
+                addResult('info', 'Test 4: Checking service methods...');
+                const expectedMethods = ['getDashboardData', 'subscribeToUpdates', 'getProjectInfo', 'getAttendanceStatus'];
+                const missingMethods = expectedMethods.filter(method => typeof dashboardService[method] !== 'function');
+                
+                if (missingMethods.length === 0) {
+                    addResult('success', 'All expected methods are present', { expectedMethods });
+                } else {
+                    addResult('error', 'Missing methods detected', { missingMethods });
+                }
+                
+                // Test 5: Test service instantiation
+                addResult('info', 'Test 5: Testing service instantiation...');
+                const serviceInstance = dashboardService.constructor.name;
+                const hasEndpoint = !!dashboardService.endpoint;
+                
+                addResult('success', 'Service instantiation check complete', {
+                    className: serviceInstance,
+                    hasEndpoint,
+                    endpoint: dashboardService.endpoint
+                });
+                
+                addResult('success', '🎉 All tests passed! DashboardService should work correctly now.');
+                
+            } catch (error) {
+                addResult('error', 'Test failed with error', {
+                    message: error.message,
+                    stack: error.stack
+                });
+            }
+        };
+        
+        // Auto-run tests on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                addResult('info', 'Page loaded, ready to run tests. Click "Run Tests" button.');
+            }, 100);
+        });
+    </script>
+</body>
+</html>

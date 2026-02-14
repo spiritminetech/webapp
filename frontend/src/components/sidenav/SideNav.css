@@ -1,0 +1,202 @@
+/* SideNav Component Styles */
+
+/* Ensure the sidenav overlay works properly */
+.sidenav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 40;
+}
+
+.sidenav-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 256px; /* 16rem = 256px */
+  background-color: white;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  overflow: hidden; /* Prevent any overflow */
+}
+
+.sidenav-container.open {
+  transform: translateX(0);
+}
+
+/* Ant Design Menu customizations */
+.sidenav-menu {
+  overflow-y: auto;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.sidenav-menu .ant-menu {
+  background-color: transparent !important;
+  border: none !important;
+  height: 100%;
+  overflow-x: hidden !important; /* Prevent horizontal scroll */
+}
+
+.sidenav-menu .ant-menu-item {
+  margin: 4px 8px !important;
+  border-radius: 6px !important;
+  height: 40px !important;
+  line-height: 40px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.sidenav-menu .ant-menu-item:hover {
+  background-color: #f3f4f6 !important;
+}
+
+.sidenav-menu .ant-menu-item-selected {
+  background-color: #dbeafe !important;
+  color: #1d4ed8 !important;
+}
+
+.sidenav-menu .ant-menu-submenu-title {
+  margin: 4px 8px !important;
+  border-radius: 6px !important;
+  height: 40px !important;
+  line-height: 40px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.sidenav-menu .ant-menu-submenu-title:hover {
+  background-color: #f3f4f6 !important;
+}
+
+.sidenav-menu .ant-menu-submenu-open > .ant-menu-submenu-title {
+  background-color: #f3f4f6 !important;
+}
+
+.sidenav-menu .ant-menu-sub {
+  background-color: transparent !important;
+}
+
+.sidenav-menu .ant-menu-sub .ant-menu-item {
+  margin: 2px 16px !important;
+  padding-left: 32px !important;
+}
+
+/* Prevent text wrapping and ensure proper width */
+.sidenav-menu .ant-menu-item-icon {
+  min-width: 16px !important;
+}
+
+.sidenav-menu .ant-menu-title-content {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+/* Header styling */
+.sidenav-header {
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidenav-logo {
+  height: 24px;
+  width: 24px;
+  border-radius: 6px;
+}
+
+.sidenav-brand {
+  flex: 1;
+  text-align: center;
+}
+
+.sidenav-brand-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.sidenav-brand-subtitle {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.sidenav-close {
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  color: #6b7280;
+  transition: all 0.2s ease;
+}
+
+.sidenav-close:hover {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+/* Footer styling */
+.sidenav-footer {
+  padding: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.sidenav-logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  background: linear-gradient(to right, #1e40af, #1e3a8a, #0891b2);
+  transition: all 0.2s ease;
+}
+
+.sidenav-logout:hover {
+  background: linear-gradient(to right, #1d4ed8, #1e40af, #0284c7);
+  transform: translateY(-1px);
+}
+
+.sidenav-logout:active {
+  transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .sidenav-container {
+    width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidenav-container {
+    width: 100vw;
+    max-width: 320px;
+  }
+}
+
+/* Accessibility */
+.sidenav-container:focus-within {
+  outline: 2px solid #3b82f6;
+  outline-offset: -2px;
+}
+
+/* Animation improvements */
+@media (prefers-reduced-motion: reduce) {
+  .sidenav-container {
+    transition: none;
+  }
+}

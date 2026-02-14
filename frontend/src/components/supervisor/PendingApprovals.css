@@ -1,0 +1,201 @@
+/* Mobile-optimized styles for PendingApprovals component */
+
+.mobile-modal .ant-modal-content {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.mobile-modal .ant-modal-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.mobile-modal .ant-modal-body {
+  padding: 16px 20px;
+}
+
+.mobile-modal .ant-modal-footer {
+  padding: 16px 20px;
+  border-top: 1px solid #f0f0f0;
+}
+
+/* Touch-friendly button styles */
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Improved card hover effects for mobile */
+@media (hover: hover) {
+  .approval-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Active state for touch devices */
+.approval-card:active {
+  transform: scale(0.98);
+}
+
+/* Better spacing for mobile screens */
+@media (max-width: 640px) {
+  .ant-card-body {
+    padding: 16px;
+  }
+  
+  .ant-card-head {
+    padding: 12px 16px;
+  }
+  
+  .ant-card-head-title {
+    font-size: 16px;
+  }
+  
+  /* Larger touch targets */
+  .ant-btn {
+    min-height: 44px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .ant-btn-sm {
+    min-height: 40px;
+  }
+  
+  .ant-btn-lg {
+    min-height: 48px;
+    font-size: 16px;
+  }
+  
+  /* Better modal sizing */
+  .ant-modal {
+    margin: 10px;
+    max-width: calc(100vw - 20px);
+  }
+  
+  .ant-modal-content {
+    border-radius: 12px;
+  }
+  
+  /* Improved form elements */
+  .ant-input,
+  .ant-input-affix-wrapper {
+    font-size: 16px; /* Prevents zoom on iOS */
+    min-height: 44px;
+  }
+  
+  .ant-input.ant-input-lg,
+  .ant-input-affix-wrapper.ant-input-affix-wrapper-lg {
+    min-height: 48px;
+  }
+  
+  /* Better avatar sizing */
+  .ant-avatar {
+    border: 2px solid #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Improved tag styling */
+  .ant-tag {
+    border-radius: 6px;
+    font-weight: 500;
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+  
+  /* Better divider spacing */
+  .ant-divider {
+    margin: 16px 0;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .ant-card-body {
+    padding: 12px;
+  }
+  
+  .ant-card-head {
+    padding: 10px 12px;
+  }
+  
+  /* Compact category summary */
+  .category-summary {
+    padding: 12px;
+  }
+  
+  /* Stack action buttons on very small screens */
+  .approval-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .approval-actions .ant-btn {
+    width: 100%;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 500px) and (orientation: landscape) {
+  .mobile-modal .ant-modal-body {
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .ant-avatar {
+    border-width: 1px;
+  }
+}
+
+/* Dark mode support (if implemented) */
+@media (prefers-color-scheme: dark) {
+  .approval-card {
+    background-color: #1f1f1f;
+    border-color: #333;
+  }
+  
+  .category-header {
+    background-color: #2a2a2a;
+    border-color: #404040;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .approval-card,
+  .ant-btn,
+  .mobile-modal .ant-modal-content {
+    transition: none;
+  }
+  
+  .approval-card:active {
+    transform: none;
+  }
+}
+
+/* Focus styles for accessibility */
+.ant-btn:focus,
+.ant-input:focus,
+.ant-input-affix-wrapper:focus {
+  outline: 2px solid #1890ff;
+  outline-offset: 2px;
+}
+
+/* Loading state improvements */
+.ant-spin-container {
+  min-height: 200px;
+}
+
+/* Empty state styling */
+.ant-empty {
+  padding: 32px 16px;
+}
+
+.ant-empty-description {
+  color: #8c8c8c;
+  font-size: 14px;
+}

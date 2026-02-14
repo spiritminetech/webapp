@@ -1,0 +1,198 @@
+/* Professional Geofence Attendance Styles */
+
+.geofence-attendance {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Gradient backgrounds */
+.gradient-bg-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.gradient-bg-success {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.gradient-bg-warning {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+/* Card hover effects */
+.attendance-card {
+  transition: all 0.3s ease;
+  border: 1px solid #e8e8e8;
+}
+
+.attendance-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: #1890ff;
+}
+
+/* Status indicators */
+.status-indicator {
+  position: relative;
+  overflow: hidden;
+}
+
+.status-indicator::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.status-indicator:hover::before {
+  left: 100%;
+}
+
+/* Location accuracy indicator */
+.accuracy-indicator {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.accuracy-high {
+  background-color: #f6ffed;
+  color: #52c41a;
+  border: 1px solid #b7eb8f;
+}
+
+.accuracy-medium {
+  background-color: #fff7e6;
+  color: #fa8c16;
+  border: 1px solid #ffd591;
+}
+
+.accuracy-low {
+  background-color: #fff2f0;
+  color: #ff4d4f;
+  border: 1px solid #ffccc7;
+}
+
+/* Pulse animation for active status */
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(24, 144, 255, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(24, 144, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(24, 144, 255, 0);
+  }
+}
+
+/* Geofence status animation */
+.geofence-inside {
+  animation: geofence-success 1s ease-in-out;
+}
+
+.geofence-outside {
+  animation: geofence-warning 1s ease-in-out;
+}
+
+@keyframes geofence-success {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes geofence-warning {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+}
+
+/* Custom scrollbar for tables */
+.ant-table-tbody {
+  scrollbar-width: thin;
+  scrollbar-color: #d9d9d9 #f0f0f0;
+}
+
+.ant-table-tbody::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ant-table-tbody::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 3px;
+}
+
+.ant-table-tbody::-webkit-scrollbar-thumb {
+  background: #d9d9d9;
+  border-radius: 3px;
+}
+
+.ant-table-tbody::-webkit-scrollbar-thumb:hover {
+  background: #bfbfbf;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .attendance-card {
+    margin: 0 -16px;
+    border-radius: 0;
+  }
+  
+  .status-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* Loading states */
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Enhanced button styles */
+.attendance-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.attendance-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: width 0.6s, height 0.6s, top 0.6s, left 0.6s;
+  transform: translate(-50%, -50%);
+}
+
+.attendance-button:active::before {
+  width: 300px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+}

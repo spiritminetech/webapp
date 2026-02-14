@@ -1,0 +1,281 @@
+/* Enhanced Attendance History Styles */
+
+.attendance-history {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Card animations */
+.attendance-record-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.attendance-record-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-color: #3b82f6;
+}
+
+/* Status indicators with glow effects */
+.status-indicator {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.status-indicator.present {
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+
+.status-indicator.absent {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.status-indicator.late {
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+}
+
+.status-indicator.pending {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  animation: pulse-blue 2s infinite;
+}
+
+/* Pulse animations */
+@keyframes pulse-blue {
+  0%, 100% {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(59, 130, 246, 0.2);
+  }
+}
+
+@keyframes pulse-green {
+  0%, 100% {
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.2);
+  }
+}
+
+/* Statistics cards */
+.stat-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+.stat-card:hover::before {
+  left: 100%;
+}
+
+.stat-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Progress bars with gradient */
+.ant-progress-bg {
+  background: linear-gradient(90deg, #10b981, #34d399) !important;
+}
+
+.ant-progress-bg.punctuality {
+  background: linear-gradient(90deg, #3b82f6, #60a5fa) !important;
+}
+
+/* Date picker enhancements */
+.ant-picker {
+  border-radius: 8px;
+  border: 2px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.ant-picker:hover,
+.ant-picker-focused {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Select dropdown enhancements */
+.ant-select-selector {
+  border-radius: 8px !important;
+  border: 2px solid #e2e8f0 !important;
+  transition: all 0.3s ease !important;
+}
+
+.ant-select-focused .ant-select-selector {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+}
+
+/* Button enhancements */
+.ant-btn {
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ant-btn-primary {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  border: none;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.ant-btn-primary:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+/* Timeline enhancements */
+.attendance-timeline .ant-timeline-item-head {
+  border-width: 3px;
+}
+
+.attendance-timeline .ant-timeline-item-content {
+  margin-left: 20px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .attendance-record-card {
+    margin: 0 -8px;
+    border-radius: 12px;
+  }
+  
+  .stat-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  
+  .mobile-stat-card {
+    padding: 16px;
+    text-align: center;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    background: white;
+  }
+}
+
+/* Loading states */
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Empty state */
+.empty-state {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.empty-state-icon {
+  font-size: 64px;
+  color: #cbd5e1;
+  margin-bottom: 16px;
+}
+
+/* Badge enhancements */
+.ant-badge-count {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  border: none;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* Tag enhancements */
+.ant-tag {
+  border-radius: 6px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border: none;
+}
+
+.ant-tag-success {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+
+.ant-tag-warning {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+}
+
+.ant-tag-error {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+}
+
+.ant-tag-default {
+  background: linear-gradient(135deg, #6b7280, #4b5563);
+  color: white;
+}
+
+/* Scroll enhancements */
+.attendance-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+.attendance-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.attendance-scroll::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+.attendance-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.attendance-scroll::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Tooltip enhancements */
+.ant-tooltip-inner {
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+/* Card header gradients */
+.gradient-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.gradient-header-success {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.gradient-header-warning {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.gradient-header-info {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+}
